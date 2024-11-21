@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\ReconocimientoController;
 
 Route::get('/', function () {
     return view('home');
@@ -25,6 +26,20 @@ Route::get('proyectos/show/{id}', function($id) {
 Route::get('proyectos/create', function() {
     return view('proyectos.create');
 });
+
+Route::get('proyectos/edit/{id}', function($id) {
+    return view('proyectos.edit', array('id'=>$id));
+})->where('id', '[0-9]+');
+
+Route::get('reconocimiento', [ReconocimientoController::class, 'getIndex']);
+
+Route::get('reconocimiento/show/{id}', [ReconocimientoController::class, 'getShow'])
+ ->where('id', '[0-9]+');
+
+Route::get('reconocimiento/create', [ReconocimientoController::class, 'getCreate'] );
+
+Route::get('reconocimiento/edit/{id}', [ReconocimientoController::class, 'getEdit'])
+->where('id', '[0-9]+');
 
 Route::get('proyectos/edit/{id}', function($id) {
     return view('proyectos.edit', array('id'=>$id));
