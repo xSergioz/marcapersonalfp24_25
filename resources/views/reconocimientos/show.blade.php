@@ -20,7 +20,7 @@
 
                 <div class="buttons">
                     <!-- Botón para editar -->
-                    {{-- <a href="{{ action([App\Http\Controllers\ReconocimientoController::class, 'getEdit'], ['id' => $id] ) }}" class="button alt">Editar reconocimiento</a></li> --}}
+                    <a href="{{ action([App\Http\Controllers\ReconocimientoController::class, 'getEdit'], ['id' => $id] ) }}" class="button alt">Editar reconocimiento</a></li>
                     <!-- Botón para volver al listado -->
                     <a href="{{ action([App\Http\Controllers\ReconocimientoController::class, 'getIndex']) }}" class="button alt">Volver al listado</a></li>
                 </div>
