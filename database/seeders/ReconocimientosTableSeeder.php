@@ -22,6 +22,7 @@ class ReconocimientosTableSeeder extends Seeder
             $recon->estudiante_id = $reconocimiento['estudiante_id'];
             $recon->actividad_id = $reconocimiento['actividad_id'];
             $recon->documento = $reconocimiento['documento'];
+            $recon->fecha = ($reconocimiento['fecha']);
             $recon->docente_validador = $reconocimiento['docente_validador'];
             $recon->save();
         }
