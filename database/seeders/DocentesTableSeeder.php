@@ -23,6 +23,6 @@ class DocentesTableSeeder extends Seeder
         Model::reguard();
 
         Schema::enableForeignKeyConstraints();
-        \App\Models\Docente::factory(10)->create();
+        Docente::factory(10)->create();
     }
 }

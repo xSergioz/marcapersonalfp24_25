@@ -17,8 +17,8 @@ class DocenteFactory extends Factory
     public function definition(): array
     {
         return [
-            'nombre' => fake() -> firstName,
-            'apellidos' => fake() -> lastName,
+            'nombre' => fake() -> firstName(),
+            'apellidos' => fake() -> lastName(),
             'direccion' => fake() -> address(),
             'ciclo' => fake() -> randomElement(['Administración', 'Comercio', 'Informática', 'Relaciones con las empresas', 'DIOP', 'Innovación'])
         ];

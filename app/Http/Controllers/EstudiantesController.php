@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Docente;
+use App\Models\Estudiante;
 use Illuminate\Http\Request;
 
 class EstudiantesController extends Controller
@@ -10,25 +10,25 @@ class EstudiantesController extends Controller
     public function getIndex()
     {
         return view('estudiantes.index')
-            ->with('estudiantes', Docente::all());
+            ->with('estudiantes', Estudiante::all());
     }
 
     public function getShow($id)
     {
-            return view('proyectos.show')
-                ->with('proyecto', Proyecto::findOrFail($id))
+            return view('estudiantes.show')
+                ->with('estudiante', Estudiante::findOrFail($id))
                 ->with('id', $id);
     }
 
     public function getCreate()
     {
-        return view('proyectos.create');
+        return view('estudiantes.create');
     }
 
     public function getEdit($id)
     {
-            return view('proyectos.edit')
-                ->with('proyecto', Proyecto::findOrFail($id))
+            return view('estudiantes.edit')
+                ->with('estudiante', Estudiante::findOrFail($id))
                 ->with('id', $id);
     }
 }
