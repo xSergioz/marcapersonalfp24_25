@@ -4,8 +4,10 @@ namespace Database\Seeders;
 
 use App\Models\Proyecto;
 use App\Models\User;
+use Illuminate\Database\Eloquent\Model;
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\Schema;
 
 class DatabaseSeeder extends Seeder
 {
