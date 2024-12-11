@@ -4,8 +4,10 @@ namespace Database\Seeders;
 
 use App\Models\Proyecto;
 use App\Models\User;
-// use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+use Database\Seeders\CurriculosTableSeeder as SeedersCurriculosTableSeeder;
 use Illuminate\Database\Seeder;
+use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Schema;
 
 class DatabaseSeeder extends Seeder
 {
@@ -26,11 +28,25 @@ class DatabaseSeeder extends Seeder
         }
 
         self::seedProyectos();
+
+        Model::unguard();
+        Schema::disableForeignKeyConstraints();
+
+        // llamadas a otros ficheros de seed
+        $this->call(SeedersCurriculosTableSeeder::class);
+        // llamadas a otros ficheros de seed
+
+        Model::reguard();
+        Schema::enableForeignKeyConstraints();
+
         $this->command->info('Tabla proyectos inicializada con datos!');
+
     }
+
     private static function seedProyectos()
     {
         Proyecto::truncate();
+
         foreach (self::$arrayProyectos as $proyecto) {
             $p = new Proyecto;
             $p->docente_id = $proyecto['docente_id'];
