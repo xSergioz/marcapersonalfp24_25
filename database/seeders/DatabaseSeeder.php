@@ -4,7 +4,6 @@ namespace Database\Seeders;
 
 use App\Models\Proyecto;
 use App\Models\User;
-use App\Models\Docente;
 use Database\Seeders\CurriculosTableSeeder as SeedersCurriculosTableSeeder;
 use Illuminate\Database\Seeder;
 use Illuminate\Database\Eloquent\Model;
@@ -17,9 +16,10 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
+
         Model::unguard();
         Schema::disableForeignKeyConstraints();
-      
+
         // User::factory(10)->create();
         if(User::count() == 0) {
             if(config('app.env') ==='local'){
@@ -31,6 +31,7 @@ class DatabaseSeeder extends Seeder
             }
         }
 
+
         // llamadas a otros ficheros de seed
         self::seedProyectos();
         $this->command->info('Tabla proyectos inicializada con datos!');
@@ -38,7 +39,8 @@ class DatabaseSeeder extends Seeder
         $this->command->info('Tabla docentes inicializada con datos!');
         $this->call(SeedersCurriculosTableSeeder::class);
         $this->command->info('Tabla curriculos inicializada con datos!');
-
+        $this->call(ReconocimientosTableSeeder::class);
+        $this->command->info('Tabla reconocimientos inicializada con datos!');
         Model::reguard();
         Schema::enableForeignKeyConstraints();
 
