@@ -16,7 +16,7 @@ return new class extends Migration
             $table->string('nombre', 32);
             $table->string('apellidos', 32) ->nullable();
             $table->string('direccion')->nullable();
-            $table->enum('departamento',['Administración', 'Comercio, Informática', 'Relaciones con las empresas', 'DIOP', 'Innovación'])->nullable();
+            $table->enum('departamento',['Administración', 'Comercio', 'Informática', 'Relaciones con las empresas', 'DIOP', 'Innovación'])->nullable();
             $table->timestamps();
         });
     }

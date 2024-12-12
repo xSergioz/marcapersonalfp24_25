@@ -14,7 +14,7 @@
             <h3><strong>Nombre: </strong>{{ $docente->nombre }}</h3>
             <h4><strong>Apellido: </strong>{{ $docente->apellidos }}</h4>
             <h4><strong>Direccion: </strong>{{ $docente->direccion }}</h4>
-            <h4><strong>Ciclo: </strong>{{ $docente->ciclo }}</h4>
+            <h4><strong>Departamento: </strong>{{ $docente->departamento }}</h4>
 
             <a class="btn btn-warning" href="{{ action([App\Http\Controllers\DocentesController::class, 'getEdit'], ['id' => $id]) }}">
                 <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>

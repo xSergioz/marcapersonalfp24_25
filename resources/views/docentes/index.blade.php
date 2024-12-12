@@ -10,7 +10,7 @@
         <section class="box">
             <a href="#" class="image featured"><img src="{{ asset('/images/mp-logo.png') }}" alt="" /></a>
             <header>
-                <h3>{{ $docente['nombre'] }}</h3>
+                <h3>{{ $docente->nombre }}</h3>
             </header>
             <footer>
                 <ul class="actions">
