@@ -11,7 +11,7 @@ class ActividadController extends Controller
     public function getIndex()
     {
         return view('actividades.index')
-        ->with('arrayActividades',Actividad::all());
+        ->with('actividades',Actividad::all());
     }
 
     public function getShow($id)

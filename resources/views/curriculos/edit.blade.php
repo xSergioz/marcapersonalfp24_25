@@ -22,7 +22,7 @@
                  </div>
                  <div class="form-group">
                     <label for="video_currículum">URL Videocurrículo</label>
-                    <input type="url" name="video_currículum" id="video_currículum" class="form-control"  value="{{ $curriculos['video_curriculum'] }}>
+                    <input type="url" name="video_currículum" id="video_currículum" class="form-control"  value="{{ $curriculos['video_curriculum'] }}">
                  </div>
 
                     <div class="form-group">
