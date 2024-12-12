@@ -4,11 +4,11 @@ namespace Database\Seeders;
 
 use App\Models\Proyecto;
 use App\Models\User;
-use Illuminate\Database\Eloquent\Model;
-// use Illuminate\Database\Console\Seeds\WithoutModelEvents;
-use Illuminate\Database\Seeder;
-use Illuminate\Support\Facades\Schema;
 use App\Models\Docente;
+use Database\Seeders\CurriculosTableSeeder as SeedersCurriculosTableSeeder;
+use Illuminate\Database\Seeder;
+use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Schema;
 
 class DatabaseSeeder extends Seeder
 {
@@ -17,6 +17,9 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
+        Model::unguard();
+        Schema::disableForeignKeyConstraints();
+      
         // User::factory(10)->create();
         if(User::count() == 0) {
             if(config('app.env') ==='local'){
@@ -28,22 +31,23 @@ class DatabaseSeeder extends Seeder
             }
         }
 
-        Model::unguard();
-        Schema::disableForeignKeyConstraints();
-
         // llamadas a otros ficheros de seed
-        $this->call(DocentesTableSeeder::class);
-        // llamadas a otros ficheros de seed
-
-        Model::reguard();
-
-        Schema::enableForeignKeyConstraints();
         self::seedProyectos();
         $this->command->info('Tabla proyectos inicializada con datos!');
+        $this->call(DocentesTableSeeder::class);
+        $this->command->info('Tabla docentes inicializada con datos!');
+        $this->call(SeedersCurriculosTableSeeder::class);
+        $this->command->info('Tabla curriculos inicializada con datos!');
+
+        Model::reguard();
+        Schema::enableForeignKeyConstraints();
+
     }
+
     private static function seedProyectos()
     {
         Proyecto::truncate();
+
         foreach (self::$arrayProyectos as $proyecto) {
             $p = new Proyecto;
             $p->docente_id = $proyecto['docente_id'];
