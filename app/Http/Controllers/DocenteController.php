@@ -31,7 +31,7 @@ class DocenteController extends Controller
     public function getEdit($id)
     {
             return view('docentes.edit')
-                ->with('Docente', Docente::findOrFail($id))
+                ->with('docente', Docente::findOrFail($id))
                 ->with('id', $id);
     }
 }
