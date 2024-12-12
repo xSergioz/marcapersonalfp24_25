@@ -37,12 +37,12 @@ class DatabaseSeeder extends Seeder
         $this->call(ReconocimientosTableSeeder::class);
         // llamadas a otros ficheros de seed
 
-        Model::reguard();
 
-        Schema::enableForeignKeyConstraints();
 
         self::seedProyectos();
         $this->command->info('Tabla proyectos inicializada con datos!');
+        Model::reguard();
+        Schema::enableForeignKeyConstraints();
     }
     private static function seedProyectos()
     {
