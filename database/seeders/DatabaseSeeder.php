@@ -4,7 +4,6 @@ namespace Database\Seeders;
 
 use App\Models\Proyecto;
 use App\Models\User;
-use Database\Seeders\CurriculosTableSeeder as SeedersCurriculosTableSeeder;
 use Illuminate\Database\Seeder;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Schema;
@@ -35,12 +34,15 @@ class DatabaseSeeder extends Seeder
         // llamadas a otros ficheros de seed
         self::seedProyectos();
         $this->command->info('Tabla proyectos inicializada con datos!');
+
         $this->call(DocentesTableSeeder::class);
         $this->command->info('Tabla docentes inicializada con datos!');
-        $this->call(SeedersCurriculosTableSeeder::class);
+        $this->call(CurriculosTableSeeder::class);
         $this->command->info('Tabla curriculos inicializada con datos!');
         $this->call(ReconocimientosTableSeeder::class);
         $this->command->info('Tabla reconocimientos inicializada con datos!');
+        $this->call(ActividadesTableSeeder::class);
+        $this->command->info('Tabla actividades inicializada con datos!');
         Model::reguard();
         Schema::enableForeignKeyConstraints();
 
