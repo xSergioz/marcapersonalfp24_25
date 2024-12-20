@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\HomeController;
+use App\Models\Ciclo;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', [HomeController::class, 'getHome']);
@@ -25,3 +26,17 @@ include __DIR__.'/users.php';
 
 require __DIR__.'/auth.php';
 
+Route::get('pruebaDB', function () {
+    $count = Ciclo::where('id', '>', 93)->count();
+    echo 'Antes: ' . $count . '<br />';
+
+    $ciclo = new Ciclo;
+    $ciclo->nombre = 'Técnico Superior en Desarrollo d eAplicaciones Laravel';
+    $ciclo->codCiclo = 'DAPL3';
+    $ciclo->codFamilia = 'IFC';
+    $ciclo->grado = 'G.S.';
+    $ciclo->save();
+
+    $count = Ciclo::where('id', '>', 93)->count();
+    echo 'Después: ' . $count . '<br />';
+});
