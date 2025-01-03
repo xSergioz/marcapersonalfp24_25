@@ -43,6 +43,11 @@ class FamiliaProfesionalController extends Controller
     {
         $familiaProfesional = FamiliaProfesional::findOrFail($id);
 
+        // TODO: Eliminar el imagen anterior si existiera
+        $path = $request->file('imagen')->store('imagens', ['disk' => 'public']);
+        $familiaProfesional->imagen = $path;
+        $familiaProfesional->save();
+
         $familiaProfesional->update($request->all());
         return redirect()->action([self::class, 'getShow'], ['id' => $familiaProfesional->id]);
      }
