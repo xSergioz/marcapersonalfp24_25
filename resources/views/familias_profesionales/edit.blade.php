@@ -10,7 +10,7 @@
          </div>
          <div class="card-body" style="padding:30px">
 
-            <form action="{{ action([App\Http\Controllers\FamiliaProfesionalController::class, 'getEdit'], ['id' => $familiaProfesional->id]) }}" method="POST">
+            <form action="{{ action([\App\Http\Controllers\FamiliaProfesionalController::class, 'putEdit'], ['id' => $familiaProfesional->id]) }}" method="POST">
 
 	            @csrf
                 @method('PUT')

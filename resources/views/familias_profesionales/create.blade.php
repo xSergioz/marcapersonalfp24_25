@@ -10,7 +10,7 @@
          </div>
          <div class="card-body" style="padding:30px">
 
-            <form action="{{ url('/familias_profesionales/create') }}" method="POST">
+            <form action="{{ action([\App\Http\Controllers\FamiliaProfesionalController::class, 'store']) }}" method="POST">
 
 	            @csrf
 
