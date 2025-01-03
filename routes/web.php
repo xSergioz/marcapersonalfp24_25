@@ -17,26 +17,12 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
-include __DIR__.'/docentes.php';
 include __DIR__.'/actividades.php';
+include __DIR__.'/ciclos.php';
 include __DIR__.'/curriculos.php';
+include __DIR__.'/familias_profesionales.php';
 include __DIR__.'/proyectos.php';
 include __DIR__.'/reconocimientos.php';
 include __DIR__.'/users.php';
 
 require __DIR__.'/auth.php';
-
-Route::get('pruebaDB', function () {
-    $count = Ciclo::where('id', '>', 93)->count();
-    echo 'Antes: ' . $count . '<br />';
-
-    $ciclo = new Ciclo;
-    $ciclo->nombre = 'Técnico Superior en Desarrollo d eAplicaciones Laravel';
-    $ciclo->codCiclo = 'DAPL3';
-    $ciclo->codFamilia = 'IFC';
-    $ciclo->grado = 'G.S.';
-    $ciclo->save();
-
-    $count = Ciclo::where('id', '>', 93)->count();
-    echo 'Después: ' . $count . '<br />';
-});

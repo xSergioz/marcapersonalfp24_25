@@ -21,6 +21,7 @@ class DatabaseSeeder extends Seeder
 
         // llamadas a otros ficheros de seed
         $this->call(UsersTableSeeder::class);
+        $this->call(FamiliasProfesionalesTableSeeder::class);
         $this->call(CiclosTableSeeder::class);
         self::seedProyectos();
         $this->command->info('Tabla proyectos inicializada con datos!');
