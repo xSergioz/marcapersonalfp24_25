@@ -16,12 +16,12 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
-include __DIR__.'/docentes.php';
 include __DIR__.'/actividades.php';
+include __DIR__.'/ciclos.php';
 include __DIR__.'/curriculos.php';
+include __DIR__.'/familias_profesionales.php';
 include __DIR__.'/proyectos.php';
 include __DIR__.'/reconocimientos.php';
 include __DIR__.'/users.php';
 
 require __DIR__.'/auth.php';
-

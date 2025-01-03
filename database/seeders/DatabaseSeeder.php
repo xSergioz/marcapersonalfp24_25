@@ -20,19 +20,17 @@ class DatabaseSeeder extends Seeder
         Schema::disableForeignKeyConstraints();
 
         // llamadas a otros ficheros de seed
-        $this->call(UsersTableSeeder::class);
-        $this->call(EstudiantesTableSeeder::class);
-        self::seedProyectos();
-        $this->command->info('Tabla proyectos inicializada con datos!');
-
-        $this->call(DocentesTableSeeder::class);
-        $this->command->info('Tabla docentes inicializada con datos!');
-        $this->call(CurriculosTableSeeder::class);
-        $this->command->info('Tabla curriculos inicializada con datos!');
-        $this->call(ReconocimientosTableSeeder::class);
-        $this->command->info('Tabla reconocimientos inicializada con datos!');
         $this->call(ActividadesTableSeeder::class);
         $this->command->info('Tabla actividades inicializada con datos!');
+        $this->call(CiclosTableSeeder::class);
+        $this->call(CurriculosTableSeeder::class);
+        $this->command->info('Tabla curriculos inicializada con datos!');
+        $this->call(FamiliasProfesionalesTableSeeder::class);
+        self::seedProyectos();
+        $this->command->info('Tabla proyectos inicializada con datos!');
+        $this->call(ReconocimientosTableSeeder::class);
+        $this->command->info('Tabla reconocimientos inicializada con datos!');
+        $this->call(UsersTableSeeder::class);
         Model::reguard();
         Schema::enableForeignKeyConstraints();
 
