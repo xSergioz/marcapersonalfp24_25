@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\API\CicloController;
+use App\Http\Controllers\API\ProyectoController;
 use App\Http\Controllers\API\CurriculoController;
 use App\Http\Controllers\API\UserController;
 use Illuminate\Http\Request;
@@ -17,7 +18,9 @@ Route::prefix('v1')->group(function () {
     Route::apiResource('ciclos', CicloController::class);
     Route::apiResource('curriculos', CurriculoController::class);
     Route::apiResource('users', UserController::class);
+    Route::apiResource('proyectos', ProyectoController::class);
 });
+
 
 Route::any('/{any}', function (ServerRequestInterface $request) {
     $config = new Config([
