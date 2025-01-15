@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\API\CicloController;
+use App\Http\Controllers\API\FamiliaProfesionalController;
 use App\Http\Controllers\API\ProyectoController;
 use App\Http\Controllers\API\CurriculoController;
 use App\Http\Controllers\API\UserController;
@@ -16,6 +17,9 @@ Route::middleware(['auth:sanctum'])->get('/user', function (Request $request) {
 
 Route::prefix('v1')->group(function () {
     Route::apiResource('ciclos', CicloController::class);
+    Route::apiResource('familias_profesionales', FamiliaProfesionalController::class)->parameters([
+        'familias_profesionales' => 'familiaProfesional'
+    ]);
     Route::apiResource('curriculos', CurriculoController::class);
     Route::apiResource('users', UserController::class);
     Route::apiResource('proyectos', ProyectoController::class);
