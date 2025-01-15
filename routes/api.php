@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\API\CicloController;
+use App\Http\Controllers\API\ReconocimientoController;
 use App\Http\Controllers\API\ActividadController;
 use App\Http\Controllers\API\FamiliaProfesionalController;
 use App\Http\Controllers\API\ProyectoController;
@@ -25,8 +26,8 @@ Route::prefix('v1')->group(function () {
     Route::apiResource('curriculos', CurriculoController::class);
     Route::apiResource('users', UserController::class);
     Route::apiResource('proyectos', ProyectoController::class);
+    Route::apiResource('reconocimientos', ReconocimientoController::class);
 });
-
 
 Route::any('/{any}', function (ServerRequestInterface $request) {
     $config = new Config([
