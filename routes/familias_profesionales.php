@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\FamiliaProfesionalController;
+use Illuminate\Routing\Route;
 
 Route::group(['prefix' => 'familias_profesionales'], function(){
     Route::get('/', [FamiliaProfesionalController::class, 'getIndex']);
