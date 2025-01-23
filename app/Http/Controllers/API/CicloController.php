@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\API;
 
+use App\Http\Middleware\ReactAdminResponse;
 use App\Http\Controllers\Controller;
 use App\Http\Resources\CicloResource;
 use App\Models\Ciclo;
@@ -9,14 +10,17 @@ use Illuminate\Http\Request;
 
 class CicloController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
+    public $modelclass = Ciclo::class;
+
     public function index(Request $request)
     {
+        $query = ReactAdminResponse::applyFilter($request, ['codCiclo', 'codFamilia', 'grado', 'nombre']);
+
+        $query = ReactAdminResponse::applySort($request, $query);
+
         return CicloResource::collection(
-            Ciclo::orderBy($request->_sort ?? 'id', $request->_order ?? 'asc')
-            ->paginate($request->perPage)
+            //$query-> orderBy($request->_sort ?? 'id', $request->_order ?? 'asc')
+            $query ->paginate($request->perPage)
         );
     }
 

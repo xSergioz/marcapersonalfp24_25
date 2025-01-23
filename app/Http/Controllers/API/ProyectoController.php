@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\API;
 
 use App\Http\Controllers\Controller;
+use App\Http\Middleware\ReactAdminResponse;
 use App\Http\Resources\ProyectoResource;
 use App\Models\Proyecto;
 use Illuminate\Http\Request;
@@ -10,17 +11,17 @@ use PhpParser\Node\Stmt\TryCatch;
 
 class ProyectoController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
+    public $modelclass = Proyecto::class;
+
     public function index(Request $request)
     {
-        /** Hay 10 proyectos, con lo que en verdad el paginate podriamos quitarlo
-         * lo dejare de cara a futuras ampliaciones
-         */
+        $query = ReactAdminResponse::applyFilter($request, ['id', 'docente_id', 'nombre', 'dominio']);
+
+        $query = ReactAdminResponse::applySort($request, $query);
+
         return ProyectoResource::collection(
-            Proyecto::orderBy($request->_sort ?? 'id', $request->_order ?? 'asc')
-            ->paginate($request->perPage)
+            //Proyecto::orderBy($request->_sort ?? 'id', $request->_order ?? 'asc')
+            $query ->paginate($request->perPage)
         );
     }
 
