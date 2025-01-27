@@ -10,18 +10,18 @@ use PhpParser\Node\Stmt\TryCatch;
 
 class ProyectoController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
+    public $modelclass = Proyecto::class;
+
     public function index(Request $request)
     {
         /** Hay 10 proyectos, con lo que en verdad el paginate podriamos quitarlo
          * lo dejare de cara a futuras ampliaciones
          */
-        return ProyectoResource::collection(
-            Proyecto::orderBy($request->_sort ?? 'id', $request->_order ?? 'asc')
-            ->paginate($request->perPage)
-        );
+        $query =
+            $request->attributes->has('queryWithParameters') ?
+            $request->attributes->get('queryWithParameters') :
+            Proyecto::query();
+        return ProyectoResource::collection($query->paginate($request->perPage));
     }
 
     /**
