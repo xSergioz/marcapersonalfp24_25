@@ -31,6 +31,7 @@ class DatabaseSeeder extends Seeder
         $this->call(ReconocimientosTableSeeder::class);
         $this->command->info('Tabla reconocimientos inicializada con datos!');
         $this->call(UsersTableSeeder::class);
+        $this->call([EmpresasTableSeeder::class]);
         Model::reguard();
         Schema::enableForeignKeyConstraints();
 
