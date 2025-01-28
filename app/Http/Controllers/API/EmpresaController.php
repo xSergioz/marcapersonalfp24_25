@@ -27,11 +27,11 @@ class EmpresaController extends Controller
      */
     public function store(Request $request)
     {
-        $ciclo = json_decode($request->getContent(), true);
+        $empresa = json_decode($request->getContent(), true);
 
-        $ciclo = Empresa::create($ciclo);
+        $empresa = Empresa::create($empresa);
 
-        return new EmpresaResource($ciclo);
+        return new EmpresaResource($empresa);
     }
 
     /**
