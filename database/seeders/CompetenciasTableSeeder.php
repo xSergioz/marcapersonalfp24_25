@@ -21,7 +21,7 @@ class CompetenciasTableSeeder extends Seeder
                 Competencia::factory()->create([
                 'nombre' => 'Prueba Nombre',
                 'color' => 'colorPrueba',
-                'actividas_id' => 1
+                'actividad_id' => 1
                 ]);
             }
         }
