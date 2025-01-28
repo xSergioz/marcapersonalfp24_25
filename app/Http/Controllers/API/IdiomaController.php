@@ -4,12 +4,12 @@ namespace App\Http\Controllers\API;
 
 use App\Http\Controllers\Controller;
 use App\Http\Resources\IdiomaResource;
-use App\Models\Idioma;
+use App\Models\Idiomas;
 use Illuminate\Http\Request;
 
 class IdiomaController extends Controller
 {
-    public $modelclass = Idioma::class;
+    public $modelclass = Idiomas::class;
 
     /**
      * Display a listing of the resource.
@@ -18,7 +18,7 @@ class IdiomaController extends Controller
     {
 
         return IdiomaResource::collection(
-            Idioma::orderBy($request->_sort ?? 'id', $request->_order ?? 'asc')
+            Idiomas::orderBy($request->_sort ?? 'id', $request->_order ?? 'asc')
             ->paginate($request->perPage)
         );
 
@@ -31,7 +31,7 @@ class IdiomaController extends Controller
     {
         $idioma = json_decode($request->getContent(), true);
 
-        $idioma = Idioma::create($idioma);
+        $idioma = Idiomas::create($idioma);
 
         return new IdiomaResource($idioma);
     }
@@ -39,7 +39,7 @@ class IdiomaController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Idioma $idioma)
+    public function show(Idiomas $idioma)
     {
         return new IdiomaResource($idioma);
 
@@ -48,7 +48,7 @@ class IdiomaController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Idioma $idioma)
+    public function update(Request $request, Idiomas $idioma)
     {
         $cicloData = json_decode($request->getContent(), true);
         $idioma->update($cicloData);
@@ -59,7 +59,7 @@ class IdiomaController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Idioma $idioma)
+    public function destroy(Idiomas $idioma)
     {
         try {
             $idioma->delete();

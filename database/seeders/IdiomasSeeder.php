@@ -5,14 +5,16 @@ namespace Database\Seeders;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 
-class IdiomaSeeder extends Seeder
+class IdiomasSeeder extends Seeder
 {
     /**
      * Run the database seeds.
      */
     public function run(): void
     {
-        DB::table('idioma')->insert([
+        DB::table('idiomas')->truncate();
+
+        DB::table('idiomas')->insert([
             [
                 'alpha2' => 'en',
                 'alpha3t' => 'eng',
