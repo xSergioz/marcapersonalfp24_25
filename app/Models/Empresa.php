@@ -13,9 +13,10 @@ class Empresa extends Model
         'id',
         'nif',
         'nombre',
+        'email',
         'token',
         'user_id',
     ];
 
-    public static $filterColumns = ['nif', 'nombre', 'token'];
+    public static $filterColumns = ['nif', 'nombre', 'email', 'token'];
 }
