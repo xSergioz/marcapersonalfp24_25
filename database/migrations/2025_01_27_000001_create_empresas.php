@@ -13,10 +13,11 @@ return new class extends Migration
     {
         Schema::create('empresas', function (Blueprint $table) {
             $table->id();
-            $table->char('nif', 15)->nullable();
-            $table->char('nombre',100)->nullable();
-            $table->char('email',100)->nullable();
-            $table->unsignedBigInteger('user_id')->nullable(false);
+            $table->string('nif', 15)->nullable();
+            $table->string('nombre',100)->nullable();
+            $table->string('email',100)->nullable();
+            $table->string('token', 100)->nullable();
+            $table->unsignedBigInteger('user_id');
             $table->timestamps();
         });
     }

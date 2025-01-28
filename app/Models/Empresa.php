@@ -7,7 +7,8 @@ use Illuminate\Database\Eloquent\Model;
 
 class Empresa extends Model
 {
-    
+    use HasFactory;
+
     protected $fillable = [
         'id',
         'nif',
@@ -15,4 +16,6 @@ class Empresa extends Model
         'token',
         'user_id',
     ];
+
+    public static $filterColumns = ['nif', 'nombre', 'token'];
 }

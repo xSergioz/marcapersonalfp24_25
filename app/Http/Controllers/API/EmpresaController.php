@@ -3,17 +3,23 @@
 namespace App\Http\Controllers\API;
 
 use App\Http\Controllers\Controller;
+use App\Http\Resources\EmpresaResource;
 use App\Models\Empresa;
 use Illuminate\Http\Request;
 
 class EmpresaController extends Controller
 {
+    public $modelclass = Empresa::class;
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
-        //
+        $query =
+            $request->attributes->has('queryWithParameters') ?
+            $request->attributes->get('queryWithParameters') :
+            Empresa::query();
+        return EmpresaResource::collection($query->paginate($request->perPage));
     }
 
     /**
@@ -21,7 +27,11 @@ class EmpresaController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $ciclo = json_decode($request->getContent(), true);
+
+        $ciclo = Empresa::create($ciclo);
+
+        return new EmpresaResource($ciclo);
     }
 
     /**
@@ -29,7 +39,7 @@ class EmpresaController extends Controller
      */
     public function show(Empresa $empresa)
     {
-        //
+        return new EmpresaResource($empresa);
     }
 
     /**
@@ -37,7 +47,10 @@ class EmpresaController extends Controller
      */
     public function update(Request $request, Empresa $empresa)
     {
-        //
+        $empresaData = json_decode($request->getContent(), true);
+        $empresa->update($empresaData);
+
+        return new EmpresaResource($empresa);
     }
 
     /**
@@ -45,6 +58,12 @@ class EmpresaController extends Controller
      */
     public function destroy(Empresa $empresa)
     {
-        //
+        try {
+            $empresa->delete();
+            return response()->json(null, 204);
+        } catch (\Exception $e) {
+            return response()->json([
+                'message' => 'Error: ' . $e->getMessage()], 400);
+        }
     }
 }
