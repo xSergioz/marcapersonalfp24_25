@@ -7,6 +7,8 @@ use App\Http\Controllers\API\FamiliaProfesionalController;
 use App\Http\Controllers\API\ProyectoController;
 use App\Http\Controllers\API\CurriculoController;
 use App\Http\Controllers\API\IdiomaController;
+use App\Http\Controllers\API\ProyectosCiclosController;
+use App\Http\Controllers\API\EmpresaController;
 use App\Http\Controllers\API\UserController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -31,6 +33,10 @@ Route::prefix('v1')->group(function () {
     Route::apiResource('idiomas', IdiomaController::class);
 
 
+    Route::get('proyectos/{proyectoId}/ciclos', [ProyectosCiclosController::class, 'indexProyectosCiclos']);
+    Route::get('ciclos/{cicloId}/proyectos', [ProyectosCiclosController::class, 'indexCiclosProyectos']);
+    Route::post('proyectos/{proyectoId}/ciclos', [ProyectosCiclosController::class, 'storeProyectoCiclo']);
+    Route::apiResource('empresas', EmpresaController::class);
 });
 
 Route::any('/{any}', function (ServerRequestInterface $request) {
