@@ -3,6 +3,7 @@
 use App\Http\Controllers\API\CicloController;
 use App\Http\Controllers\API\ReconocimientoController;
 use App\Http\Controllers\API\ActividadController;
+use App\Http\Controllers\API\CompetenciaController;
 use App\Http\Controllers\API\FamiliaProfesionalController;
 use App\Http\Controllers\API\ProyectoController;
 use App\Http\Controllers\API\CurriculoController;
@@ -30,6 +31,9 @@ Route::prefix('v1')->group(function () {
     Route::apiResource('users', UserController::class);
     Route::apiResource('proyectos', ProyectoController::class);
     Route::apiResource('reconocimientos', ReconocimientoController::class);
+
+    Route::apiResource('competencias', CompetenciaController::class);
+
     Route::apiResource('idiomas', IdiomaController::class);
 
 
@@ -37,6 +41,7 @@ Route::prefix('v1')->group(function () {
     Route::get('ciclos/{cicloId}/proyectos', [ProyectosCiclosController::class, 'indexCiclosProyectos']);
     Route::post('proyectos/{proyectoId}/ciclos', [ProyectosCiclosController::class, 'storeProyectoCiclo']);
     Route::apiResource('empresas', EmpresaController::class);
+
 });
 
 Route::any('/{any}', function (ServerRequestInterface $request) {
