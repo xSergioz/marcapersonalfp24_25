@@ -7,7 +7,7 @@ use App\Models\UsersCiclos;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
-class UsersCiclosSeeder extends Seeder
+class UsersCiclosTableSeeder extends Seeder
 {
     /**
      * Run the database seeds.
