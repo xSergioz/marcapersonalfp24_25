@@ -11,6 +11,8 @@ use App\Http\Controllers\API\IdiomaController;
 use App\Http\Controllers\API\ProyectosCiclosController;
 use App\Http\Controllers\API\EmpresaController;
 use App\Http\Controllers\API\UserController;
+use App\Http\Controllers\API\UsersCiclosController;
+use App\Models\UsersCiclos;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use Psr\Http\Message\ServerRequestInterface;
@@ -32,6 +34,8 @@ Route::prefix('v1')->group(function () {
     Route::apiResource('proyectos', ProyectoController::class);
     Route::apiResource('reconocimientos', ReconocimientoController::class);
 
+    Route::apiResource('users_ciclos', UsersCiclosController::class);
+
     Route::apiResource('competencias', CompetenciaController::class);
 
     Route::apiResource('idiomas', IdiomaController::class);
@@ -41,7 +45,6 @@ Route::prefix('v1')->group(function () {
     Route::get('ciclos/{cicloId}/proyectos', [ProyectosCiclosController::class, 'indexCiclosProyectos']);
     Route::post('proyectos/{proyectoId}/ciclos', [ProyectosCiclosController::class, 'storeProyectoCiclo']);
     Route::apiResource('empresas', EmpresaController::class);
-
 });
 
 Route::any('/{any}', function (ServerRequestInterface $request) {
