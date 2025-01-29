@@ -1,13 +1,19 @@
 <?php
 
-use App\Http\Controllers\API\CicloController;
-use App\Http\Controllers\API\ReconocimientoController;
 use App\Http\Controllers\API\ActividadController;
-use App\Http\Controllers\API\FamiliaProfesionalController;
-use App\Http\Controllers\API\ProyectoController;
+use App\Http\Controllers\API\CicloController;
+use App\Http\Controllers\API\CompetenciaController;
 use App\Http\Controllers\API\CurriculoController;
+use App\Http\Controllers\API\EmpresaController;
+use App\Http\Controllers\API\FamiliaProfesionalController;
+use App\Http\Controllers\API\IdiomaController;
 use App\Http\Controllers\API\ParticipanteProyectoController;
+use App\Http\Controllers\API\ProyectosCiclosController;
+use App\Http\Controllers\API\ProyectoController;
+use App\Http\Controllers\API\ReconocimientoController;
 use App\Http\Controllers\API\UserController;
+use App\Http\Controllers\API\UsersCiclosController;
+use App\Models\UsersCiclos;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use Psr\Http\Message\ServerRequestInterface;
@@ -29,6 +35,13 @@ Route::prefix('v1')->group(function () {
     Route::apiResource('proyectos', ProyectoController::class);
     Route::apiResource('reconocimientos', ReconocimientoController::class);
     Route::apiResource('participantes_proyectos', ParticipanteProyectoController::class);
+    Route::apiResource('users_ciclos', UsersCiclosController::class);
+    Route::apiResource('competencias', CompetenciaController::class);
+    Route::apiResource('idiomas', IdiomaController::class);
+    Route::get('proyectos/{proyectoId}/ciclos', [ProyectosCiclosController::class, 'indexProyectosCiclos']);
+    Route::get('ciclos/{cicloId}/proyectos', [ProyectosCiclosController::class, 'indexCiclosProyectos']);
+    Route::post('proyectos/{proyectoId}/ciclos', [ProyectosCiclosController::class, 'storeProyectoCiclo']);
+    Route::apiResource('empresas', EmpresaController::class);
 });
 
 Route::any('/{any}', function (ServerRequestInterface $request) {
