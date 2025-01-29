@@ -65,7 +65,8 @@ class CicloController extends Controller
             return response()->json(null, 204);
         } catch (\Exception $e) {
             return response()->json([
-                'message' => 'Error: ' . $e->getMessage()], 400);
+                'message' => 'Error: ' . $e->getMessage()
+            ], 400);
         }
     }
 }

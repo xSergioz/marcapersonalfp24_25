@@ -13,6 +13,7 @@ use App\Http\Controllers\API\ProyectoController;
 use App\Http\Controllers\API\ReconocimientoController;
 use App\Http\Controllers\API\UserController;
 use App\Http\Controllers\API\UsersCiclosController;
+use App\Http\Controllers\ProyectosController;
 use App\Models\UsersCiclos;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -42,6 +43,7 @@ Route::prefix('v1')->group(function () {
     Route::get('ciclos/{cicloId}/proyectos', [ProyectosCiclosController::class, 'indexCiclosProyectos']);
     Route::post('proyectos/{proyectoId}/ciclos', [ProyectosCiclosController::class, 'storeProyectoCiclo']);
     Route::apiResource('empresas', EmpresaController::class);
+    Route::get('/proyecto/count', [ProyectoController::class, 'countProyectos']);
 });
 
 Route::any('/{any}', function (ServerRequestInterface $request) {

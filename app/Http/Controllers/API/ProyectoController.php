@@ -6,17 +6,12 @@ use App\Http\Controllers\Controller;
 use App\Http\Resources\ProyectoResource;
 use App\Models\Proyecto;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use PhpParser\Node\Stmt\TryCatch;
 
 class ProyectoController extends Controller
 {
     public $modelclass = Proyecto::class;
-    /**
-     * Display a listing of the resource.
-     */
-
-     public $modelclass = Proyecto::class;
-
 
     public function index(Request $request)
     {
@@ -73,5 +68,14 @@ class ProyectoController extends Controller
                 'message' => 'Error: ' . $e->getMessage()
             ], 400);
         }
+    }
+
+    public function countProyectos() {
+
+        $totalProyectos = Proyecto::count();
+
+        return response()->json([
+            'count' => $totalProyectos
+        ]);
     }
 }
