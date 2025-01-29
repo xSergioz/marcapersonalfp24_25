@@ -15,6 +15,8 @@ class UsersCiclos extends Model
         'ciclo_id'
     ];
 
+    public static $filterColumns = ['user_id', 'ciclo_id'];
+
     public function user(){
         return $this->belongsTo(User::class);
     }

@@ -7,6 +7,8 @@ use App\Http\Controllers\API\FamiliaProfesionalController;
 use App\Http\Controllers\API\ProyectoController;
 use App\Http\Controllers\API\CurriculoController;
 use App\Http\Controllers\API\UserController;
+use App\Http\Controllers\API\UsersCiclosController;
+use App\Models\UsersCiclos;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use Psr\Http\Message\ServerRequestInterface;
@@ -27,6 +29,7 @@ Route::prefix('v1')->group(function () {
     Route::apiResource('users', UserController::class);
     Route::apiResource('proyectos', ProyectoController::class);
     Route::apiResource('reconocimientos', ReconocimientoController::class);
+    Route::apiResource('users_ciclos', UsersCiclosController::class);
 });
 
 Route::any('/{any}', function (ServerRequestInterface $request) {
