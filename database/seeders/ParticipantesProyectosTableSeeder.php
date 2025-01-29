@@ -15,6 +15,5 @@ class ParticipantesProyectosTableSeeder extends Seeder
     {
         ParticipanteProyecto::truncate();
         ParticipanteProyecto:: factory (10) -> create();
-
     }
 }
