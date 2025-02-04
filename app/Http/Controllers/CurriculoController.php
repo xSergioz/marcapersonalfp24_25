@@ -6,6 +6,7 @@ use App\Models\Curriculo;
 
 class CurriculoController extends Controller
 {
+
     public function getIndex()
     {
         return view('curriculos.index')

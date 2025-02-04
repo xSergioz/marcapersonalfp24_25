@@ -14,6 +14,9 @@ return new class extends Migration
         Schema::create('ciclos', function (Blueprint $table) {
             $table->id();
             $table->string('codCiclo', 6);
+            $table->foreign('familia_id')
+            ->references('id')->on('ciclos')
+            ->onDelete('cascade');
             $table->string('nombre');
             $table->string('grado', 30);
             $table->timestamps();
