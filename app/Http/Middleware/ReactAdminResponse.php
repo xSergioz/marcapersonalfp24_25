@@ -23,7 +23,7 @@ class ReactAdminResponse
             if ($request->filled('_end')) {
                 $request->merge(['perPage' => 1 + $request->_end - $paramStart]);
             }
-            $request->merge(['page' => intval($request->_start / $request->perPage) + 1]);
+            $request->merge(['page' => intval($paramStart->_start / $request->perPage) + 1]);
 
             $controller = $request->route()->getController();
             $modelClassName = $controller->modelclass;
