@@ -14,6 +14,41 @@ class CicloResource extends JsonResource
      */
     public function toArray(Request $request): array
     {
-        return parent::toArray($request);
+        $padre = parent::toArray($request);
+        $familiaProfesional = $this->familiaProfesional;
+        $familia =[
+            "familia_id" => [
+                "id" => $familiaProfesional->id,
+                "codigo" => $familiaProfesional->codigo,
+                "nombre" => $familiaProfesional->nombre
+            ]
+
+        ];
+        unset($padre['created_at']);
+        unset($padre['updated_at']);
+
+        return array_merge(
+            $padre,
+            $familia
+        );
+
     }
 }
+/*$cicloResource = array_merge(
+            parent::toArray($request),
+            ['familiaProfesional' => $this->familiaProfesional]
+        );
+        unset($cicloResource['familia_id']);
+        return $cicloResource;
+        return [
+                "id" => $this->id,
+                "codCiclo" => $this->codCiclo,
+                "codFamilia" => $this->codFamilia,
+                "familia_id" => [
+                     "id" => $familiaProfesional->id,
+                     "codigo" => $familiaProfesional->codigo,
+                     "nombre" => $familiaProfesional->nombre
+                ],
+                "grado" => $this->grado,
+                "nombre" => $this->nombre
+            ];*/

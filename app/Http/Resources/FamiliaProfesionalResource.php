@@ -17,7 +17,7 @@ class FamiliaProfesionalResource extends JsonResource
         // return parent::toArray($request);
         return array_merge(
             parent::toArray($request),
-            ['ciclos' => $this->ciclos]
+            ['ciclos' => CicloResource::collection($this->ciclos)]
         );
     }
 }
