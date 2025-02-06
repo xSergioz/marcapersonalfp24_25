@@ -18,6 +18,17 @@ return new class extends Migration
 
             $table->timestamps();
         });
+
+        Schema::create('competencias_actividades', function (Blueprint $table) {
+
+            $table->unsignedBigInteger('actividad_id');
+            $table->foreign('actividad_id')->references('id')->on('actividades');
+
+            $table->unsignedBigInteger('competencia_id');
+            $table->foreign('competencia_id')->references('id')->on('competencias');
+
+            $table->timestamps();
+        });
     }
 
 
@@ -28,5 +39,6 @@ return new class extends Migration
     public function down(): void
     {
         Schema::dropIfExists('competencias');
+
     }
 };
