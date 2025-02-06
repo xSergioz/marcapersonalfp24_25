@@ -2,7 +2,9 @@
 
 namespace Database\Seeders;
 
+use App\Models\Actividad;
 use App\Models\Reconocimiento;
+use App\Models\User;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
@@ -25,6 +27,10 @@ class ReconocimientosTableSeeder extends Seeder
             $recon->docente_validador = $reconocimiento['docente_validador'];
             $recon->save();
         }
+
+        //Obtener todos los usuarios y actividades
+        $users = User::all();
+        $actividades = Actividad::all();
     }
 
     private static $arrayReconocimientos = [

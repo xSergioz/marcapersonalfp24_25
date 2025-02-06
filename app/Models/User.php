@@ -56,4 +56,8 @@ class User extends Authenticatable
     {
         return $this->hasOne(Curriculo::class);
     }
+
+    public function actividades() {
+        return $this ->belongsToMany(Actividad::class, 'reconocimientos')->withTimestamps();
+    }
 }
