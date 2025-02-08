@@ -16,5 +16,8 @@ class UsersCompetencias extends Model
         'competencia_id',
         'docente_validador'
     ];
-    
+
+    public static $filterColumns = [
+        'user_id', 'competencia_id', 'docente_validador'
+    ];
 }
