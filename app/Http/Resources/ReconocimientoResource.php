@@ -14,6 +14,11 @@ class ReconocimientoResource extends JsonResource
      */
     public function toArray(Request $request): array
     {
-        return parent::toArray($request);
+        return array_merge(
+            parent::toArray($request),
+            ['estudiante_id' => $this->estudiante],
+            ['actividad_id' => $this->actividad],
+            ['docente_validador' => $this->docente]
+        );
     }
 }

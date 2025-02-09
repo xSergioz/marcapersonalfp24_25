@@ -18,6 +18,8 @@ class Actividad extends Model
         'insignia'
     ];
 
+    public static $filterColumns = ['docente_id', 'insignia'];
+
     public function users(): BelongsToMany
     {
         return $this->belongsToMany(User::class, 'reconocimientos', 'actividad_id', 'estudiante_id')->withPivot('documento');

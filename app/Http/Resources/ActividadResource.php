@@ -16,7 +16,7 @@ class ActividadResource extends JsonResource
     {
         return array_merge(
             parent::toArray($request),
-            ['user' => $this->users]
+            ['docente_id' => $this->users]
         );
     }
 }
