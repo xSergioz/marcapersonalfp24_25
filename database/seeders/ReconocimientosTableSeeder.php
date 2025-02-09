@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\Actividad;
 use App\Models\Reconocimiento;
 use App\Models\User;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
@@ -14,24 +15,24 @@ class ReconocimientosTableSeeder extends Seeder
      */
     public static function run(): void
     {
-        // Borrar el contenido de la tabla reconocimientos
         Reconocimiento::truncate();
 
-        // Añadir nuevos datos a la tabla reconocimientos
-        foreach (self::$arrayReconocimientos as $reconocimiento) {
-            $recon = new Reconocimiento;
-            $recon->estudiante_id = $reconocimiento['estudiante_id'];
-            $recon->actividad_id = $reconocimiento['actividad_id'];
-            $recon->documento = $reconocimiento['documento'];
-            $recon->docente_validador = $reconocimiento['docente_validador'];
-            $recon->save();
+        $users = User::all();
+        $actividades = Actividad::all();
+
+        foreach ($users as $user) {
+
+            $numRegistros = rand(0, 2);
+
+            for ($i = 0; $i < $numRegistros; $i++) {
+                $reconocimiento = new Reconocimiento();
+                $reconocimiento->estudiante_id = $user->id;
+                $reconocimiento->actividad_id = $actividades->random()->id;
+                $reconocimiento->docente_validador = $users->random()->id;
+                $reconocimiento->documento = 'https://drive.google.com/document/d/' . substr(md5(rand()), 0, 10);
+                $reconocimiento->save();
+            }
         }
-
-
-
-
-
-
     }
 
     private static $arrayReconocimientos = [
