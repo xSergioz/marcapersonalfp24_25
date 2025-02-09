@@ -49,8 +49,7 @@ class UsersCiclosTableSeeder extends Seeder
                             $usersAleatorios = $users->random($numUsers);
                             $ciclo->users()->attach($usersAleatorios);
                         }
-                     }
-                        */
+                     }     */
 
 
 
