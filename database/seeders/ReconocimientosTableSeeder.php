@@ -31,6 +31,20 @@ class ReconocimientosTableSeeder extends Seeder
         //Obtener todos los usuarios y actividades
         $users = User::all();
         $actividades = Actividad::all();
+
+        foreach ($users as $user) {
+            $numActividades = rand(0, 2); // Número aleatorio de actividades a asignar
+            if ($numActividades > 0) {
+             $actividadesAleatorias = $actividades->random($numActividades);
+             foreach ($actividadesAleatorias as $actividad) {
+             Reconocimiento::create([
+            'estudiante_id' => $user->id, 'actividad_id' => $actividad->id, 'documento' => null, // Puedes generar documentos aleatorios si es necesario
+            'docente_validador' => null, // Puedes asignar un validador aleatorio
+            ]);
+            }
+            }
+            }
+
     }
 
     private static $arrayReconocimientos = [
