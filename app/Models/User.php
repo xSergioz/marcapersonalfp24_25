@@ -57,7 +57,12 @@ class User extends Authenticatable
         return $this->hasOne(Curriculo::class);
     }
 
-    public function actividades() {
-        return $this ->belongsToMany(Actividad::class, 'reconocimientos')->withTimestamps();
+    public function actividadEstudiante() {
+        return $this ->belongsToMany(Actividad::class, 'reconocimientos', 'estudiante_id', 'actividad_id')->withTimestamps();
     }
+
+    public function actividadDocente() {
+        return $this -> belongsToMany(Actividad::class, 'reconocimientos', 'docente_validador', 'actividad_id')->withTimestamps();
+    }
+
 }

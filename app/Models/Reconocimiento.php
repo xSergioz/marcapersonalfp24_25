@@ -16,4 +16,16 @@ class Reconocimiento extends Model
         'documento',
         'docente_validador'
     ];
+
+    public function actividad() {
+        return $this -> belongsTo(Actividad::class);
+    }
+
+    public function docente() {
+        return $this -> belongsTo(User::class, 'docente_validador');
+    }
+
+    public function estudiante() {
+        return $this -> belongsTo(User::class, 'estudiante_id');
+    }
 }
