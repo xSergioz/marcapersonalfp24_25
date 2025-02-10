@@ -20,7 +20,8 @@ class ProyectoResource extends JsonResource
 
         return array_merge(
             $data,
-            ['ciclos' => $this->ciclos]
+            ['ciclos' => $this->ciclos],
+            [ 'participantes' => $this->participantes]
         );
     }
 }

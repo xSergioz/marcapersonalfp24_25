@@ -37,4 +37,9 @@ class Proyecto extends Model
     {
         return $this->belongsToMany(Ciclo::class, 'proyectos_ciclos');
     }
+
+    public function participantes(): BelongsToMany
+    {
+        return $this->belongsToMany(User::class, 'participantes_proyectos', 'proyecto_id', 'user_id');
+    }
 }
