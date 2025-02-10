@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
 class Ciclo extends Model
 {
@@ -21,8 +22,14 @@ class Ciclo extends Model
 
     public static $filterColumns = ['codCiclo', 'codFamilia', 'grado', 'nombre'];
 
-    public function familiaProfesional() : BelongsTo
+    public function users(): BelongsToMany
     {
-        return $this->belongsTo(FamiliaProfesional::class, 'familia_id');
+        return $this->belongsToMany(User::class, 'users_ciclos', 'ciclo_id', 'user_id');
     }
+
+    public function proyectos(): BelongsToMany
+    {
+        return $this->belongsToMany(Proyecto::class, 'proyectos_ciclos');
+    }
+
 }

@@ -24,6 +24,7 @@ class UsersIdiomasSeeder extends Seeder
                 'certificado' => 0,
             ],
             [
+                
                 'user_id' => 1,
                 'idioma_id' => 2,
                 'nivel' => 'Intermedio',

@@ -2,6 +2,7 @@
 
 namespace App\Http\Resources;
 
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
 
@@ -14,6 +15,20 @@ class CompetenciaResource extends JsonResource
      */
     public function toArray(Request $request): array
     {
-        return parent::toArray($request);
+        $padre=parent::toArray($request);
+        $actividades=$this->actividades;
+        $actividadesArray=[];
+        foreach($actividades as $actividad){
+            $actividadesArray[]=[
+                "id"=>$actividad->id,
+            ];
+        }
+        unset($padre['created_at']);
+        unset($padre['updated_at']);
+        return array_merge(
+             $padre,
+            ["actividades"=>$actividadesArray],
+            ['user' => $this->users]
+        );
     }
 }
