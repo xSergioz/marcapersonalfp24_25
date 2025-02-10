@@ -14,11 +14,14 @@ class ProyectoResource extends JsonResource
      */
     public function toArray(Request $request): array
     {
+        $data = parent::toArray($request);
+
+        unset($data['ciclo_id']);
+
         return array_merge(
-            parent::toArray($request),
-            [
-                'participantes' => $this->participantes
-            ]
+            $data,
+            ['ciclos' => $this->ciclos],
+            [ 'participantes' => $this->participantes]
         );
     }
 }

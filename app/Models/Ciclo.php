@@ -27,4 +27,9 @@ class Ciclo extends Model
         return $this->belongsToMany(User::class, 'users_ciclos', 'ciclo_id', 'user_id');
     }
 
+    public function proyectos(): BelongsToMany
+    {
+        return $this->belongsToMany(Proyecto::class, 'proyectos_ciclos');
+    }
+
 }

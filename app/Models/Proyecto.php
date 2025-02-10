@@ -33,6 +33,11 @@ class Proyecto extends Model
         $this->attributes['metadatos'] = json_encode($value);
     }
 
+    public function ciclos(): BelongsToMany
+    {
+        return $this->belongsToMany(Ciclo::class, 'proyectos_ciclos');
+    }
+
     public function participantes(): BelongsToMany
     {
         return $this->belongsToMany(User::class, 'participantes_proyectos', 'proyecto_id', 'user_id');
