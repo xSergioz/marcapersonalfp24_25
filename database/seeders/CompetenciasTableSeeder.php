@@ -26,4 +26,5 @@ class CompetenciasTableSeeder extends Seeder
             }
         }
     }
+
 }

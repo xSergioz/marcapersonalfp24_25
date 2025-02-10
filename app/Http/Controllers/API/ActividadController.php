@@ -11,6 +11,7 @@ use Symfony\Component\HttpKernel\Event\ResponseEvent;
 class ActividadController extends Controller
 {
     public $modelclass = Actividad::class;
+
     /**
      * Display a listing of the resource.
      */

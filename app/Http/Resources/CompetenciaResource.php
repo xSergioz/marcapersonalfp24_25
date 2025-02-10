@@ -2,6 +2,7 @@
 
 namespace App\Http\Resources;
 
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
 
@@ -25,8 +26,9 @@ class CompetenciaResource extends JsonResource
         unset($padre['created_at']);
         unset($padre['updated_at']);
         return array_merge(
-             $padre,[
-             "actividades"=>$actividadesArray]
+             $padre,
+            ["actividades"=>$actividadesArray],
+            ['user' => $this->users]
         );
     }
 }
