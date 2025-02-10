@@ -15,15 +15,6 @@ class CompetenciasTableSeeder extends Seeder
     {
         Competencia::truncate();
 
-        if(Competencia::count() == 0) {
-            if(config('app.env') ==='local'){
-                //Competencia::factory(10)->create();
-                Competencia::factory()->create([
-                'nombre' => 'Prueba Nombre',
-                'color' => 'colorPrueba'
-
-                ]);
-            }
-        }
+        Competencia::factory(10)->create();
     }
 }
