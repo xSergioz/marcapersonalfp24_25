@@ -58,6 +58,18 @@ class User extends Authenticatable
         return $this->hasOne(Curriculo::class);
     }
 
+    public function actividadesComoEstudiante(): BelongsToMany
+    {
+        return $this->belongsToMany(Actividad::class, 'reconocimientos', 'estudiante_id', 'actividad_id')
+            ->withPivot('documento', 'docente_validador');
+    }
+
+    public function actividadesComoDocente(): BelongsToMany
+    {
+        return $this->belongsToMany(Actividad::class, 'reconocimientos', 'docente_validador', 'actividad_id')
+            ->withPivot('documento', 'estudiante_id');
+    }
+
     public function competencias ()
     {
         return $this->belongsToMany(Competencia::class, 'users_competencias')

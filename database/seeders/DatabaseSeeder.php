@@ -32,10 +32,10 @@ class DatabaseSeeder extends Seeder
         $this->command->info('Tabla proyectos inicializada con datos!');
         $this->call(ProyectosCiclosSeeder::class);
         $this->command->info('Tabla proyectos_ciclos inicializada con datos!');
-        $this->call(ReconocimientosTableSeeder::class);
-        $this->command->info('Tabla reconocimientos inicializada con datos!');
         $this->call(UsersTableSeeder::class);
         $this->command->info('Tabla intermedia que relaciona users y ciclos inicializada con datos!');
+        $this->call(ReconocimientosTableSeeder::class);
+        $this->command->info('Tabla reconocimientos inicializada con datos!');
         $this->call(UsersCiclosTableSeeder::class);
         $this->command->info('Tabla users inicializada con datos!');
         $this->call(IdiomasSeeder::class);
