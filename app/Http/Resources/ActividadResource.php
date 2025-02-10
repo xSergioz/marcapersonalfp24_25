@@ -27,7 +27,9 @@ class ActividadResource extends JsonResource
         return array_merge(
             $padre,
             ["competencias"=>$competenciasArray],
-            ['docente_id' => $this->users]
+            ['docente_id' => $this->users],
+            ['reconocimientos' => $this->reconocimientos]
         );
     }
 }
+

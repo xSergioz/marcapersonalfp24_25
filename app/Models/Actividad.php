@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
 class Actividad extends Model
@@ -20,6 +21,11 @@ class Actividad extends Model
 
     public static $filterColumns = ['docente_id', 'insignia'];
 
+    public function reconocimientos(): HasMany
+    {
+        return $this->hasMany(Reconocimiento::class);
+    }
+
     public function competencias(): BelongsToMany
     {
         return $this->belongsToMany(
@@ -31,5 +37,5 @@ class Actividad extends Model
     {
         return $this->belongsToMany(User::class, 'reconocimientos', 'actividad_id', 'estudiante_id')->withPivot('documento');
     }
-
 }
+
