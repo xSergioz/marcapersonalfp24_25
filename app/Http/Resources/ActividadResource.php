@@ -14,8 +14,19 @@ class ActividadResource extends JsonResource
      */
     public function toArray(Request $request): array
     {
+        $padre=parent::toArray($request);
+        $competencias=$this->competencias;
+        $competenciasArray=[];
+        foreach($competencias as $competencia){
+            $competenciasArray[]=[
+                "id"=>$competencia->id,
+            ];
+        }
+        unset($padre['created_at']);
+        unset($padre['updated_at']);
         return array_merge(
-            parent::toArray($request),
+            $padre,
+            ["competencias"=>$competenciasArray],
             ['docente_id' => $this->users]
         );
     }
