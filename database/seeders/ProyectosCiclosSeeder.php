@@ -2,6 +2,8 @@
 
 namespace Database\Seeders;
 
+use App\Models\Ciclo;
+use App\Models\Proyecto;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
@@ -15,8 +17,8 @@ class ProyectosCiclosSeeder extends Seeder
     {
         DB::table('proyectos_ciclos')->truncate();
         // Asignar proyectos a ciclos
-        $ciclos = DB::table('ciclos')->get();
-        $proyectos = DB::table('proyectos')->get();
+        $ciclos = Ciclo::all()->take(10);
+        $proyectos = Proyecto::all();
 
         foreach ($ciclos as $ciclo) {
 
@@ -24,10 +26,7 @@ class ProyectosCiclosSeeder extends Seeder
 
             for ($i = 0; $i < $registros; $i++) {
                 $proyecto = $proyectos->random();
-                DB::table('proyectos_ciclos')->insert([
-                    'ciclo_id' => $ciclo->id,
-                    'proyecto_id' => $proyecto->id,
-                ]);
+                $ciclo->proyectos()->attach($proyecto);
             }
         }
 

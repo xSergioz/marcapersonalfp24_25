@@ -7,7 +7,6 @@ use App\Models\Reconocimiento;
 use App\Models\User;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
-use App\Models\Actividad;
 
 class ReconocimientosTableSeeder extends Seeder
 {
@@ -20,7 +19,6 @@ class ReconocimientosTableSeeder extends Seeder
         $actividades = Actividad::all();
 
         $users = User::all();
-        $actividades = Actividad::all();
 
         foreach ($users as $user) {
 

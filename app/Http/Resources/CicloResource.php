@@ -16,7 +16,7 @@ class CicloResource extends JsonResource
     public function toArray(Request $request): array
     {
         $padre=parent::toArray($request);
-        $familiaProfesional = $this->FamiliaProfesional;
+        $familiaProfesional = $this->familiaProfesional;
         $familia=
         [
             "familia_id"=> [

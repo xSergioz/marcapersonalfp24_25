@@ -74,6 +74,7 @@ class User extends Authenticatable
     {
         return $this->belongsToMany(Competencia::class, 'users_competencias')
                 ->withPivot('docente_validador');
+    }
 
     public function ciclos(): BelongsToMany
     {
