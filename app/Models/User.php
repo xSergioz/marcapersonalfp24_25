@@ -69,4 +69,19 @@ class User extends Authenticatable
         return $this->belongsToMany(Actividad::class, 'reconocimientos', 'docente_validador', 'actividad_id')
             ->withPivot('documento', 'estudiante_id');
     }
+
+    public function competencias ()
+    {
+        return $this->belongsToMany(Competencia::class, 'users_competencias')
+                ->withPivot('docente_validador');
+
+    public function ciclos(): BelongsToMany
+    {
+        return $this->belongsToMany(Ciclo::class, 'users_ciclos', 'user_id', 'ciclo_id');
+    }
+
+    public function proyectos(): BelongsToMany
+    {
+        return $this->belongsToMany(Proyecto::class, 'participantes_proyectos', 'user_id', 'proyecto_id');
+    }
 }
