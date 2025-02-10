@@ -16,8 +16,9 @@ class UserResource extends JsonResource
     {
         return array_merge(
             parent::toArray($request),
-            ['curriculo' => $this->curriculo,
-            'proyectos' => $this->proyectos]
+            ['curriculo' => $this->curriculo],
+            ['ciclos' => $this->ciclos],
+            ['proyectos' => $this->proyectos]
         );
     }
 }
