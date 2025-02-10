@@ -17,6 +17,7 @@ class Actividad extends Model
         'docente_id',
         'insignia'
     ];
+    public static $filterColumns = ['docente_id', 'insignia'];
     public function reconocimientos(): HasMany
     {
         return $this->hasMany(Reconocimiento::class);
