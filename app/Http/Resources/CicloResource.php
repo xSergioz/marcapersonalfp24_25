@@ -14,13 +14,22 @@ class CicloResource extends JsonResource
      */
     public function toArray(Request $request): array
     {
-        // return parent::toArray($request);
-        return array_merge(parent::toArray($request), [
-            'familia_profesional' => $this->familiaProfesional,
-        ],
-        [
-            'users' => $this->users,
-        ]
-    );
+        $padre = parent::toArray($request);
+        $familiaProfesional = $this->familiaProfesional;
+        $familia = [
+            "familia_id" => [
+                "id" => $familiaProfesional->id,
+                "codigo" => $familiaProfesional->codigo,
+                "nombre" => $familiaProfesional->nombre
+            ],
+        ];
+
+        unset($padre['created_at']);
+        unset($padre['updated_at']);
+
+        return array_merge(
+            $padre,
+            $familia
+        );
     }
 }

@@ -26,6 +26,7 @@ class Ciclo extends Model
     {
         return $this->belongsTo(FamiliaProfesional::class, 'familia_id');
     }
+
     public function users(): BelongsToMany
     {
         return $this->belongsToMany(User::class, 'users_ciclos', 'ciclo_id', 'user_id');
