@@ -26,7 +26,11 @@ class ProyectosCiclosSeeder extends Seeder
 
             for ($i = 0; $i < $registros; $i++) {
                 $proyecto = $proyectos->random();
-                $ciclo->proyectos()->attach($proyecto);
+                try {
+                    $ciclo->proyectos()->attach($proyecto);
+                } catch (\Exception $e) {
+                    $this->command->error('Error al insertar proyecto ' . $proyecto->id . ' en ciclo ' . $ciclo->id);
+                }
             }
         }
 

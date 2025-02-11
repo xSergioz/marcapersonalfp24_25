@@ -13,7 +13,7 @@ class ReconocimientosTableSeeder extends Seeder
     /**
      * Run the database seeds.
      */
-    public static function run(): void
+    public function run(): void
     {
         Reconocimiento::truncate();
         $actividades = Actividad::all();
@@ -42,7 +42,11 @@ class ReconocimientosTableSeeder extends Seeder
                 $recon->actividad_id = $actividad->id;
                 $recon->documento = 'https://drive.google.com/document/d/' . rand(100000000000, 999999999999);
                 $recon->docente_validador = rand(1, 10);
-                $recon->save();
+                try {
+                    $recon->save();
+                } catch (\Exception $e) {
+                    $this->command->error('Error al insertar reconocimiento ' . $recon->id);
+                }
             }
 
         }

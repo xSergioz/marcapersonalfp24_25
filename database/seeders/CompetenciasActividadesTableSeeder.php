@@ -20,10 +20,14 @@ class CompetenciasActividadesTableSeeder extends Seeder
             $relaciones=rand(0,2);
             $actividadesRandom=$actividades->random($relaciones);
             foreach($actividadesRandom as $actividad){
-                DB::table('competencias_actividades')->insert([
-                    'actividad_id'=>$actividad->id,
-                    'competencia_id'=>$competencia->id
-                ]);
+                try {
+                    DB::table('competencias_actividades')->insert([
+                        'actividad_id'=>$actividad->id,
+                        'competencia_id'=>$competencia->id
+                    ]);
+                } catch (\Exception $e) {
+                    $this->command->error('Error al insertar actividad ' . $actividad->id . ' en competencia ' . $competencia->id);
+                }
             }
         }
     }
