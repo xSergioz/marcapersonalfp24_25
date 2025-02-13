@@ -11,6 +11,7 @@ use App\Http\Controllers\API\ParticipanteProyectoController;
 use App\Http\Controllers\API\ProyectosCiclosController;
 use App\Http\Controllers\API\ProyectoController;
 use App\Http\Controllers\API\ReconocimientoController;
+use App\Http\Controllers\API\TokenController;
 use App\Http\Controllers\API\UserController;
 use App\Http\Controllers\API\UsersCiclosController;
 use App\Http\Controllers\Auth\AuthenticatedSessionController;
@@ -48,10 +49,14 @@ Route::prefix('v1')->group(function () {
         return $request->user();
     });
 
+    // Líneas de autenticación
+    Route::post('tokens', [TokenController::class, 'store']);
+    Route::delete('tokens', [TokenController::class, 'destroy'])->middleware('auth:sanctum');
     Route::post('/login', [AuthenticatedSessionController::class, 'store'])
     ->middleware('guest')
     ->name('login');
 });
+
 
 Route::any('/{any}', function (ServerRequestInterface $request) {
     $config = new Config([
