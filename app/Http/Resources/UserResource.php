@@ -14,11 +14,13 @@ class UserResource extends JsonResource
      */
     public function toArray(Request $request): array
     {
-        $idioma = $this->idiomas->map(function ($idioma) {
+        $idiomas = $this->idiomas->map(function ($idioma) {
             return [
                 'alpha2' => $idioma->alpha2,
-                'alpha3t' => $idioma->alpha3t,
-                'english_name' => $idioma->english_name
+                'english_name' => $idioma->english_name,
+                'native_name' => $idioma->native_name,
+                'nivel' => $idioma->pivot->nivel,
+                'certificado' => $idioma->pivot->certificado
             ];
         });
 
@@ -30,7 +32,7 @@ class UserResource extends JsonResource
             ['curriculo' => $this->curriculo],
             ['ciclos' => $this->ciclos],
             ['proyectos' => $this->proyectos],
-            ['idiomas' => $idioma]
+            ['idiomas' => $idiomas]
         );
     }
 }
