@@ -91,4 +91,10 @@ class User extends Authenticatable
     {
         return $this->email === env('ADMIN_EMAIL');
     }
+
+    public function idiomas(): BelongsToMany
+    {
+        return $this->belongsToMany(Idiomas::class, 'user_idiomas', 'user_id', 'idioma_id')
+            ->withPivot('nivel', 'certificado');
+    }
 }
