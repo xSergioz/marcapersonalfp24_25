@@ -19,4 +19,8 @@ class Empresa extends Model
     ];
 
     public static $filterColumns = ['nif', 'nombre', 'email', 'token'];
+
+    public function usuario() {
+        return $this->belongsTo(User::class, 'user_id');
+    }
 }

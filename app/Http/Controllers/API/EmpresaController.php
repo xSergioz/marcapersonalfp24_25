@@ -5,14 +5,23 @@ namespace App\Http\Controllers\API;
 use App\Http\Controllers\Controller;
 use App\Http\Resources\EmpresaResource;
 use App\Models\Empresa;
+use Illuminate\Container\Attributes\Auth;
 use Illuminate\Http\Request;
+use Illuminate\Routing\Controllers\HasMiddleware;
+use Illuminate\Routing\Controllers\Middleware;
 
-class EmpresaController extends Controller
+class EmpresaController extends Controller implements HasMiddleware
 {
     public $modelclass = Empresa::class;
     /**
      * Display a listing of the resource.
      */
+
+    public static function middleware(): array {
+        return [
+            new Middleware('auth:sanctum', except: ['index', 'show']),
+        ];
+    }
     public function index(Request $request)
     {
         $query =
@@ -28,6 +37,8 @@ class EmpresaController extends Controller
     public function store(Request $request)
     {
         $empresa = json_decode($request->getContent(), true);
+
+        $empresa['user_id'] = Auth::id();
 
         $empresa = Empresa::create($empresa);
 
